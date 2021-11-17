@@ -26,7 +26,7 @@
 		DA43344C27430C4E0000A4FB /* DistanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceViewController.swift; sourceTree = "<group>"; };
 		DA58622D2743585D00D3E984 /* FileManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtension.swift; sourceTree = "<group>"; };
 		DA58622F2743630500D3E984 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		DADBCEC527424BAD00E5CD51 /* ScavengerHunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScavengerHunt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DADBCEC527424BAD00E5CD51 /* SafeDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DADBCEC827424BAD00E5CD51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DADBCECA27424BAD00E5CD51 /* Scene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Scene.sks; sourceTree = "<group>"; };
 		DADBCECC27424BAD00E5CD51 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
@@ -51,7 +51,7 @@
 		DADBCEBC27424BAD00E5CD51 = {
 			isa = PBXGroup;
 			children = (
-				DADBCEC727424BAD00E5CD51 /* ScavengerHunt */,
+				DADBCEC727424BAD00E5CD51 /* SafeDelivery */,
 				DADBCEC627424BAD00E5CD51 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,12 +59,12 @@
 		DADBCEC627424BAD00E5CD51 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DADBCEC527424BAD00E5CD51 /* ScavengerHunt.app */,
+				DADBCEC527424BAD00E5CD51 /* SafeDelivery.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DADBCEC727424BAD00E5CD51 /* ScavengerHunt */ = {
+		DADBCEC727424BAD00E5CD51 /* SafeDelivery */ = {
 			isa = PBXGroup;
 			children = (
 				DADBCEC827424BAD00E5CD51 /* AppDelegate.swift */,
@@ -79,15 +79,15 @@
 				DADBCED327424BAF00E5CD51 /* Assets.xcassets */,
 				DADBCED527424BAF00E5CD51 /* LaunchScreen.storyboard */,
 			);
-			path = ScavengerHunt;
+			path = SafeDelivery;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DADBCEC427424BAD00E5CD51 /* ScavengerHunt */ = {
+		DADBCEC427424BAD00E5CD51 /* SafeDelivery */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DADBCEDA27424BAF00E5CD51 /* Build configuration list for PBXNativeTarget "ScavengerHunt" */;
+			buildConfigurationList = DADBCEDA27424BAF00E5CD51 /* Build configuration list for PBXNativeTarget "SafeDelivery" */;
 			buildPhases = (
 				DADBCEC127424BAD00E5CD51 /* Sources */,
 				DADBCEC227424BAD00E5CD51 /* Frameworks */,
@@ -97,12 +97,12 @@
 			);
 			dependencies = (
 			);
-			name = ScavengerHunt;
+			name = SafeDelivery;
 			packageProductDependencies = (
 				DADBCEDE27424CC600E5CD51 /* LogStore */,
 			);
 			productName = ScavengerHunt;
-			productReference = DADBCEC527424BAD00E5CD51 /* ScavengerHunt.app */;
+			productReference = DADBCEC527424BAD00E5CD51 /* SafeDelivery.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -120,7 +120,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DADBCEC027424BAD00E5CD51 /* Build configuration list for PBXProject "ScavengerHunt" */;
+			buildConfigurationList = DADBCEC027424BAD00E5CD51 /* Build configuration list for PBXProject "SafeDelivery" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -136,7 +136,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DADBCEC427424BAD00E5CD51 /* ScavengerHunt */,
+				DADBCEC427424BAD00E5CD51 /* SafeDelivery */,
 			);
 		};
 /* End PBXProject section */
@@ -333,8 +333,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.aerialstring.ScavengerHunt;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = co.aerialstring.SafeDelivery;
+				PRODUCT_NAME = SafeDelivery;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -366,8 +366,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.aerialstring.ScavengerHunt;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = co.aerialstring.SafeDelivery;
+				PRODUCT_NAME = SafeDelivery;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -377,7 +377,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DADBCEC027424BAD00E5CD51 /* Build configuration list for PBXProject "ScavengerHunt" */ = {
+		DADBCEC027424BAD00E5CD51 /* Build configuration list for PBXProject "SafeDelivery" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DADBCED827424BAF00E5CD51 /* Debug */,
@@ -386,7 +386,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DADBCEDA27424BAF00E5CD51 /* Build configuration list for PBXNativeTarget "ScavengerHunt" */ = {
+		DADBCEDA27424BAF00E5CD51 /* Build configuration list for PBXNativeTarget "SafeDelivery" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DADBCEDB27424BAF00E5CD51 /* Debug */,

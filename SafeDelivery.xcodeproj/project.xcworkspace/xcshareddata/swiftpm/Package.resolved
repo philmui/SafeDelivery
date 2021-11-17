@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "LogStore",
+        "repositoryURL": "https://github.com/philmui/LogStore.git",
+        "state": {
+          "branch": "main",
+          "revision": "b656982b5f2e5be8fc9760139ca6875b77442352",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
