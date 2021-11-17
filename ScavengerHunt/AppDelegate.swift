@@ -6,15 +6,20 @@
 //
 
 import UIKit
+import LogStore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var trigger: LogTrigger?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        #if DEBUG
+        trigger = LogTrigger(in:window)
+        #endif
+        
         return true
     }
 

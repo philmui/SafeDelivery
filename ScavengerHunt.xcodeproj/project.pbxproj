@@ -7,21 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA433447274306DA0000A4FB /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA433446274306DA0000A4FB /* LocationProvider.swift */; };
+		DA43344D27430C4E0000A4FB /* DistanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA43344C27430C4E0000A4FB /* DistanceViewController.swift */; };
+		DA58622E2743585D00D3E984 /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA58622D2743585D00D3E984 /* FileManagerExtension.swift */; };
+		DA5862302743630500D3E984 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA58622F2743630500D3E984 /* Constants.swift */; };
 		DADBCEC927424BAD00E5CD51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBCEC827424BAD00E5CD51 /* AppDelegate.swift */; };
 		DADBCECB27424BAD00E5CD51 /* Scene.sks in Resources */ = {isa = PBXBuildFile; fileRef = DADBCECA27424BAD00E5CD51 /* Scene.sks */; };
 		DADBCECD27424BAD00E5CD51 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBCECC27424BAD00E5CD51 /* Scene.swift */; };
-		DADBCECF27424BAD00E5CD51 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBCECE27424BAD00E5CD51 /* ViewController.swift */; };
+		DADBCECF27424BAD00E5CD51 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBCECE27424BAD00E5CD51 /* ARViewController.swift */; };
 		DADBCED227424BAD00E5CD51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DADBCED027424BAD00E5CD51 /* Main.storyboard */; };
 		DADBCED427424BAF00E5CD51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DADBCED327424BAF00E5CD51 /* Assets.xcassets */; };
 		DADBCED727424BAF00E5CD51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DADBCED527424BAF00E5CD51 /* LaunchScreen.storyboard */; };
+		DADBCEDF27424CC600E5CD51 /* LogStore in Frameworks */ = {isa = PBXBuildFile; productRef = DADBCEDE27424CC600E5CD51 /* LogStore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA433446274306DA0000A4FB /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
+		DA43344C27430C4E0000A4FB /* DistanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceViewController.swift; sourceTree = "<group>"; };
+		DA58622D2743585D00D3E984 /* FileManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtension.swift; sourceTree = "<group>"; };
+		DA58622F2743630500D3E984 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DADBCEC527424BAD00E5CD51 /* ScavengerHunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScavengerHunt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DADBCEC827424BAD00E5CD51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DADBCECA27424BAD00E5CD51 /* Scene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Scene.sks; sourceTree = "<group>"; };
 		DADBCECC27424BAD00E5CD51 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
-		DADBCECE27424BAD00E5CD51 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DADBCECE27424BAD00E5CD51 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		DADBCED127424BAD00E5CD51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DADBCED327424BAF00E5CD51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DADBCED627424BAF00E5CD51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -32,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DADBCEDF27424CC600E5CD51 /* LogStore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,7 +70,11 @@
 				DADBCEC827424BAD00E5CD51 /* AppDelegate.swift */,
 				DADBCECA27424BAD00E5CD51 /* Scene.sks */,
 				DADBCECC27424BAD00E5CD51 /* Scene.swift */,
-				DADBCECE27424BAD00E5CD51 /* ViewController.swift */,
+				DA58622F2743630500D3E984 /* Constants.swift */,
+				DADBCECE27424BAD00E5CD51 /* ARViewController.swift */,
+				DA43344C27430C4E0000A4FB /* DistanceViewController.swift */,
+				DA58622D2743585D00D3E984 /* FileManagerExtension.swift */,
+				DA433446274306DA0000A4FB /* LocationProvider.swift */,
 				DADBCED027424BAD00E5CD51 /* Main.storyboard */,
 				DADBCED327424BAF00E5CD51 /* Assets.xcassets */,
 				DADBCED527424BAF00E5CD51 /* LaunchScreen.storyboard */,
@@ -84,6 +98,9 @@
 			dependencies = (
 			);
 			name = ScavengerHunt;
+			packageProductDependencies = (
+				DADBCEDE27424CC600E5CD51 /* LogStore */,
+			);
 			productName = ScavengerHunt;
 			productReference = DADBCEC527424BAD00E5CD51 /* ScavengerHunt.app */;
 			productType = "com.apple.product-type.application";
@@ -112,6 +129,9 @@
 				Base,
 			);
 			mainGroup = DADBCEBC27424BAD00E5CD51;
+			packageReferences = (
+				DADBCEDD27424CC600E5CD51 /* XCRemoteSwiftPackageReference "LogStore" */,
+			);
 			productRefGroup = DADBCEC627424BAD00E5CD51 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -140,8 +160,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DADBCECF27424BAD00E5CD51 /* ViewController.swift in Sources */,
+				DADBCECF27424BAD00E5CD51 /* ARViewController.swift in Sources */,
+				DA58622E2743585D00D3E984 /* FileManagerExtension.swift in Sources */,
+				DA433447274306DA0000A4FB /* LocationProvider.swift in Sources */,
 				DADBCECD27424BAD00E5CD51 /* Scene.swift in Sources */,
+				DA5862302743630500D3E984 /* Constants.swift in Sources */,
+				DA43344D27430C4E0000A4FB /* DistanceViewController.swift in Sources */,
 				DADBCEC927424BAD00E5CD51 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,7 +317,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5GK84AB28K;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Program requires camera to annotate location";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Program requires GPS to track location";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Program requires GPS to track location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Program requires GPS to track location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -323,7 +350,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5GK84AB28K;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Program requires camera to annotate location";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Program requires GPS to track location";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Program requires GPS to track location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Program requires GPS to track location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -366,6 +396,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DADBCEDD27424CC600E5CD51 /* XCRemoteSwiftPackageReference "LogStore" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/philmui/LogStore.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DADBCEDE27424CC600E5CD51 /* LogStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DADBCEDD27424CC600E5CD51 /* XCRemoteSwiftPackageReference "LogStore" */;
+			productName = LogStore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DADBCEBD27424BAD00E5CD51 /* Project object */;
 }

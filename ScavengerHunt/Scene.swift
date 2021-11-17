@@ -9,7 +9,7 @@ import SpriteKit
 import ARKit
 
 class Scene: SKScene {
-    
+        
     override func didMove(to view: SKView) {
         // Setup your scene here
     }
@@ -23,6 +23,14 @@ class Scene: SKScene {
             return
         }
         
+        guard let touch = touches.first else { return }
+        let point = touch.location(in: sceneView)
+        
+        guard let hitTestResult = sceneView.hitTest(point, types: .existingPlane).first else { return }
+        let anchor = ARAnchor(name: K.TEXT_ANCHOR, transform: hitTestResult.worldTransform)
+        sceneView.session.add(anchor: anchor)
+        
+        /***
         // Create anchor using the camera's current position
         if let currentFrame = sceneView.session.currentFrame {
             
@@ -35,5 +43,6 @@ class Scene: SKScene {
             let anchor = ARAnchor(transform: transform)
             sceneView.session.add(anchor: anchor)
         }
+        ***/
     }
 }
