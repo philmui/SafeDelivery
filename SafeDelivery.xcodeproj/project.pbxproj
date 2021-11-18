@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47ED8C781FBF153898F74C41 /* Pods_SafeDelivery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF8A349A83D03ACE9C46A1B /* Pods_SafeDelivery.framework */; };
+		DA19BC8F27459FF200F74807 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA19BC8E27459FF200F74807 /* GoogleService-Info.plist */; };
 		DA433447274306DA0000A4FB /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA433446274306DA0000A4FB /* LocationProvider.swift */; };
 		DA43344D27430C4E0000A4FB /* DistanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA43344C27430C4E0000A4FB /* DistanceViewController.swift */; };
 		DA58622E2743585D00D3E984 /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA58622D2743585D00D3E984 /* FileManagerExtension.swift */; };
@@ -22,6 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5860FF373D792FF49EEC4D5B /* Pods-SafeDelivery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeDelivery.release.xcconfig"; path = "Target Support Files/Pods-SafeDelivery/Pods-SafeDelivery.release.xcconfig"; sourceTree = "<group>"; };
+		AAF8A349A83D03ACE9C46A1B /* Pods_SafeDelivery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SafeDelivery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B59C6ABE9146440B60D48227 /* Pods-SafeDelivery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeDelivery.debug.xcconfig"; path = "Target Support Files/Pods-SafeDelivery/Pods-SafeDelivery.debug.xcconfig"; sourceTree = "<group>"; };
+		DA19BC8E27459FF200F74807 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		DA433446274306DA0000A4FB /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		DA43344C27430C4E0000A4FB /* DistanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceViewController.swift; sourceTree = "<group>"; };
 		DA58622D2743585D00D3E984 /* FileManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtension.swift; sourceTree = "<group>"; };
@@ -42,17 +48,63 @@
 			buildActionMask = 2147483647;
 			files = (
 				DADBCEDF27424CC600E5CD51 /* LogStore in Frameworks */,
+				47ED8C781FBF153898F74C41 /* Pods_SafeDelivery.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4561A85F2C52B2EFB12DFB88 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B59C6ABE9146440B60D48227 /* Pods-SafeDelivery.debug.xcconfig */,
+				5860FF373D792FF49EEC4D5B /* Pods-SafeDelivery.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B0FF6DD030388F6078CE7723 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AAF8A349A83D03ACE9C46A1B /* Pods_SafeDelivery.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA19BC8B27459C8900F74807 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DA433446274306DA0000A4FB /* LocationProvider.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DA19BC8C27459C9700F74807 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DADBCED027424BAD00E5CD51 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DA19BC8D27459CA900F74807 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DADBCECE27424BAD00E5CD51 /* ARViewController.swift */,
+				DA43344C27430C4E0000A4FB /* DistanceViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		DADBCEBC27424BAD00E5CD51 = {
 			isa = PBXGroup;
 			children = (
 				DADBCEC727424BAD00E5CD51 /* SafeDelivery */,
 				DADBCEC627424BAD00E5CD51 /* Products */,
+				4561A85F2C52B2EFB12DFB88 /* Pods */,
+				B0FF6DD030388F6078CE7723 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,12 +123,12 @@
 				DADBCECA27424BAD00E5CD51 /* Scene.sks */,
 				DADBCECC27424BAD00E5CD51 /* Scene.swift */,
 				DA58622F2743630500D3E984 /* Constants.swift */,
-				DADBCECE27424BAD00E5CD51 /* ARViewController.swift */,
-				DA43344C27430C4E0000A4FB /* DistanceViewController.swift */,
 				DA58622D2743585D00D3E984 /* FileManagerExtension.swift */,
-				DA433446274306DA0000A4FB /* LocationProvider.swift */,
-				DADBCED027424BAD00E5CD51 /* Main.storyboard */,
+				DA19BC8B27459C8900F74807 /* Models */,
+				DA19BC8C27459C9700F74807 /* Views */,
+				DA19BC8D27459CA900F74807 /* Controllers */,
 				DADBCED327424BAF00E5CD51 /* Assets.xcassets */,
+				DA19BC8E27459FF200F74807 /* GoogleService-Info.plist */,
 				DADBCED527424BAF00E5CD51 /* LaunchScreen.storyboard */,
 			);
 			path = SafeDelivery;
@@ -89,9 +141,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DADBCEDA27424BAF00E5CD51 /* Build configuration list for PBXNativeTarget "SafeDelivery" */;
 			buildPhases = (
+				248A86462AD23D3FBBAA893D /* [CP] Check Pods Manifest.lock */,
 				DADBCEC127424BAD00E5CD51 /* Sources */,
 				DADBCEC227424BAD00E5CD51 /* Frameworks */,
 				DADBCEC327424BAD00E5CD51 /* Resources */,
+				2138A64F32C200966B56A9BC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,7 +184,7 @@
 			);
 			mainGroup = DADBCEBC27424BAD00E5CD51;
 			packageReferences = (
-				DADBCEDD27424CC600E5CD51 /* XCRemoteSwiftPackageReference "LogStore" */,
+				DADBCEDD27424CC600E5CD51 /* XCRemoteSwiftPackageReference "LogStore.git" */,
 			);
 			productRefGroup = DADBCEC627424BAD00E5CD51 /* Products */;
 			projectDirPath = "";
@@ -148,12 +202,55 @@
 			files = (
 				DADBCECB27424BAD00E5CD51 /* Scene.sks in Resources */,
 				DADBCED727424BAF00E5CD51 /* LaunchScreen.storyboard in Resources */,
+				DA19BC8F27459FF200F74807 /* GoogleService-Info.plist in Resources */,
 				DADBCED427424BAF00E5CD51 /* Assets.xcassets in Resources */,
 				DADBCED227424BAD00E5CD51 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2138A64F32C200966B56A9BC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SafeDelivery/Pods-SafeDelivery-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SafeDelivery/Pods-SafeDelivery-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SafeDelivery/Pods-SafeDelivery-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		248A86462AD23D3FBBAA893D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SafeDelivery-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DADBCEC127424BAD00E5CD51 /* Sources */ = {
@@ -310,6 +407,7 @@
 		};
 		DADBCEDB27424BAF00E5CD51 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B59C6ABE9146440B60D48227 /* Pods-SafeDelivery.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -343,6 +441,7 @@
 		};
 		DADBCEDC27424BAF00E5CD51 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5860FF373D792FF49EEC4D5B /* Pods-SafeDelivery.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -398,7 +497,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DADBCEDD27424CC600E5CD51 /* XCRemoteSwiftPackageReference "LogStore" */ = {
+		DADBCEDD27424CC600E5CD51 /* XCRemoteSwiftPackageReference "LogStore.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/philmui/LogStore.git";
 			requirement = {
@@ -411,7 +510,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		DADBCEDE27424CC600E5CD51 /* LogStore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DADBCEDD27424CC600E5CD51 /* XCRemoteSwiftPackageReference "LogStore" */;
+			package = DADBCEDD27424CC600E5CD51 /* XCRemoteSwiftPackageReference "LogStore.git" */;
 			productName = LogStore;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -1,12 +1,13 @@
 //
 //  AppDelegate.swift
-//  ScavengerHunt
+//  SafeDelivery
 //
 //  Created by Phil Mui on 11/15/21.
 //
 
 import UIKit
 import LogStore
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         trigger = LogTrigger(in:window)
         #endif
         
+        FirebaseApp.configure()
         return true
     }
 

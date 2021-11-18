@@ -1,12 +1,13 @@
 //
 //  Scene.swift
-//  ScavengerHunt
+//  SafeDelivery
 //
 //  Created by Phil Mui on 11/15/21.
 //
 
 import SpriteKit
 import ARKit
+import LogStore
 
 class Scene: SKScene {
         
@@ -18,7 +19,7 @@ class Scene: SKScene {
         // Called before each frame is rendered
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesBegan(_ tFor touches: Set<UITouch>, with event: UIEvent?) {
         guard let sceneView = self.view as? ARSKView else {
             return
         }
@@ -26,6 +27,17 @@ class Scene: SKScene {
         guard let touch = touches.first else { return }
         let point = touch.location(in: sceneView)
         
+//        guard let query = sceneView.session.currentFrame?.raycastQuery(from: point,
+//                                                                       allowing: .existingPlaneGeometry,
+//                                                                       alignment: .any) else { return }
+//
+//        let results = sceneView.session.raycast(query)
+//
+//        guard let hitTestResult = results.first else {
+//            printLog("No surface found")
+//            return
+//        }
+
         guard let hitTestResult = sceneView.hitTest(point, types: .existingPlane).first else { return }
         let anchor = ARAnchor(name: K.TEXT_ANCHOR, transform: hitTestResult.worldTransform)
         sceneView.session.add(anchor: anchor)
