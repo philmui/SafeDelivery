@@ -26,9 +26,9 @@ class LocationProvider: NSObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
-        case .authorizedWhenInUse: printLog("auth success")
+        case .authorizedWhenInUse: printLog("location authz success")
         case .denied:
-            printLog("auth denied")
+            printLog("location authz denied")
             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
         default: break
         }

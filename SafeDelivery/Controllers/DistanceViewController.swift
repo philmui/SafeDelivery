@@ -9,6 +9,8 @@ import UIKit
 import Combine
 import CoreLocation
 import LogStore
+import Firebase
+import FirebaseFirestore
 
 class DistanceViewController: UIViewController {
 
@@ -19,6 +21,8 @@ class DistanceViewController: UIViewController {
     private var lastDistance: CLLocationDistance = 0
     private var stillInRadius = false
     
+    let db = Firestore.firestore()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -85,6 +89,7 @@ class DistanceViewController: UIViewController {
             withIdentifier: "ARViewController") as? ARViewController {
             
             next.shouldRestore = shouldRestore
+            next.lastLocation = storedLocations.last
             next.modalPresentationStyle = .fullScreen
             present(next, animated: true, completion: nil)
         }
@@ -93,22 +98,65 @@ class DistanceViewController: UIViewController {
     private func write(_ location: CLLocation?) {
         guard let location = location else { return }
         
-        do {
-            let data = try NSKeyedArchiver.archivedData(withRootObject: location, requiringSecureCoding: true)
-            try data.write(to: FileManager.locationURL())
-        } catch {
-            printLog("write error: \(error)")
-        }
+        // firestore persistence
+        db.collection(K.FStore.locationCollection)
+            .addDocument(data: [
+                K.FStore.timestamp: Timestamp(date: Date()),
+                K.FStore.latitude: location.coordinate.latitude,
+                K.FStore.longitude: location.coordinate.longitude
+            ]) { error in
+                if let e = error {
+                    printLog("Firestore write error: \(e)")
+                }
+            }
+        
+// local persistence
+//        do {
+//            let data = try NSKeyedArchiver.archivedData(
+//                       withRootObject: location, requiringSecureCoding: true)
+//            try data.write(to: FileManager.locationURL())
+//        } catch {
+//            printLog("write error: \(error)")
+//        }
     }
     
     private func loadLocation() -> CLLocation? {
-        do {
-            let data = try Data(contentsOf: FileManager.locationURL())
-            return try NSKeyedUnarchiver.unarchivedObject(ofClass: CLLocation.self, from: data)
-        } catch {
-            printLog("load error: \(error)")
-        }
-        return nil
+        
+        var lastLocation: CLLocation?
+
+        db.collection(K.FStore.locationCollection)
+            .order(by: K.FStore.timestamp, descending: true).limit(to: 4)
+            .getDocuments { querySnapshot, error in
+                
+                if let err = error {
+                    printLog("Error getting Firebase history: \(err)")
+                } else {
+                    if let docs = querySnapshot?.documents {
+                        
+                        for doc in docs {
+                            let data = doc.data()
+                            if let timestamp = data[K.FStore.timestamp] as? Timestamp,
+                               let lat = data[K.FStore.latitude] as? Double,
+                               let long = data[K.FStore.longitude] as? Double {
+                                
+                                if lastLocation == nil {
+                                    lastLocation = CLLocation(latitude: lat, longitude: long)
+                                    print("==> time: \(timestamp.dateValue()), lat: \(lat), long: \(long)")
+                                }
+                                print(" -> time: \(timestamp.dateValue()), lat: \(lat), long: \(long)")
+                            }
+                        }
+                    }
+                }
+            }
+        
+//        do {
+//            let data = try Data(contentsOf: FileManager.locationURL())
+//            return try NSKeyedUnarchiver.unarchivedObject(ofClass: CLLocation.self, from: data)
+//        } catch {
+//            printLog("load error: \(error)")
+//        }
+        return lastLocation
     }
     
 

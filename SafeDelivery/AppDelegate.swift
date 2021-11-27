@@ -12,6 +12,8 @@ import Firebase
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    let configToNeverTouch: Void = FirebaseApp.configure()
+    
     var window: UIWindow?
     var trigger: LogTrigger?
 
@@ -20,8 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
         trigger = LogTrigger(in:window)
         #endif
-        
-        FirebaseApp.configure()
+                
         return true
     }
 

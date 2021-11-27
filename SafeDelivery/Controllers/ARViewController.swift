@@ -9,6 +9,8 @@ import UIKit
 import SpriteKit
 import ARKit
 import LogStore
+import Firebase
+import FirebaseFirestore
 
 class ARViewController: UIViewController, ARSKViewDelegate, ARSessionDelegate {
     
@@ -17,7 +19,9 @@ class ARViewController: UIViewController, ARSKViewDelegate, ARSessionDelegate {
     @IBOutlet var doneButton: UIButton!
     
     var shouldRestore = false
-    
+    var lastLocation: CLLocation?
+    let db = Firestore.firestore()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,16 +46,19 @@ class ARViewController: UIViewController, ARSKViewDelegate, ARSessionDelegate {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
 
-        if shouldRestore {
-            do {
-                let data = try Data(contentsOf: FileManager.mapDataURL())
-                let worldMap = try NSKeyedUnarchiver.unarchivedObject(
-                                        ofClass: ARWorldMap.self, from: data)
-                configuration.initialWorldMap = worldMap
-            } catch {
-                printLog("load worldmap error: \(error)")
-            }
-        }
+        restoreStoredWorldMap(configuration)
+        
+//        if shouldRestore {
+//
+//            do {
+//                let data = try Data(contentsOf: FileManager.mapDataURL())
+//                let worldMap = try NSKeyedUnarchiver.unarchivedObject(
+//                                        ofClass: ARWorldMap.self, from: data)
+//                configuration.initialWorldMap = worldMap
+//            } catch {
+//                printLog("load worldmap error: \(error)")
+//            }
+//        }
         
         
         // Run the view's session
@@ -75,17 +82,83 @@ class ARViewController: UIViewController, ARSKViewDelegate, ARSessionDelegate {
                 return
             }
             
-            do {
-                let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: false)
-                try data.write(to: FileManager.mapDataURL())
-                self?.dismiss(animated: true, completion: nil)
-            } catch {
-                printLog("click done error: \(error)")
+            if let loc = self!.lastLocation {
+                self!.writeWorldMap(map: worldMap, at: loc)
             }
+            //do {
+            //    let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: false)
+            //    try data.write(to: FileManager.mapDataURL())
+            //} catch {
+            //    printLog("click done error: \(error)")
+            //}
+            self?.dismiss(animated: true, completion: nil)
         }
     }
     
+    func writeWorldMap(map: ARWorldMap, at location: CLLocation) {
+        
+        do {
+            let nsmap = try NSKeyedArchiver.archivedData(withRootObject: map,
+                                                         requiringSecureCoding: false)
+
+            // firestore persistence
+            db.collection(K.FStore.worldMapCollection)
+                .addDocument(data: [
+                    K.FStore.timestamp: Timestamp(date: Date()),
+                    K.FStore.latitude: location.coordinate.latitude,
+                    K.FStore.longitude: location.coordinate.longitude,
+                    K.FStore.worldMap: nsmap
+                ]) { error in
+                    if let e = error {
+                        printLog("Firestore write error: \(e)")
+                    }
+                }
+        } catch {
+            printLog("Firebase save world: \(error)")
+        }
+    }
     
+    func restoreStoredWorldMap(_ configuration: ARWorldTrackingConfiguration) {
+        
+        db.collection(K.FStore.worldMap)
+            .order(by: K.FStore.timestamp, descending: true).limit(to: 1)
+            .getDocuments { querySnapshot, error in
+                
+            if let err = error {
+                printLog("Error getting Firebase worldmap: \(err)")
+            } else {
+                if let docs = querySnapshot?.documents,
+                   let doc = docs.last {
+                    
+                    let data = doc.data()
+                    if let timestamp = data[K.FStore.timestamp] as? Timestamp,
+                       let lat = data[K.FStore.latitude] as? Double,
+                       let long = data[K.FStore.longitude] as? Double,
+                       let nsmap = data[K.FStore.worldMap] as? Data {
+                        
+                        let lastLocation = CLLocation(latitude: lat, longitude: long)
+                        do {
+                            if let storedWorldMap = try NSKeyedUnarchiver.unarchivedObject(
+                                ofClass: ARWorldMap.self, from: nsmap) {
+                                                        
+                                print("**> time: \(timestamp.dateValue()), \(lastLocation), \(String(describing: storedWorldMap))")
+
+                                print("****> anchors: \(storedWorldMap.anchors.count)")
+                                
+                                configuration.initialWorldMap = storedWorldMap
+                                print("$$$> anchors: \(storedWorldMap.anchors.count)")
+                                self.displayAnchors(storedWorldMap.anchors)
+                            }
+                        } catch {
+                            printLog("Firebase load worldmap error: \(error)")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
     // MARK: - ARSessionDelegate
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
@@ -103,22 +176,26 @@ class ARViewController: UIViewController, ARSKViewDelegate, ARSessionDelegate {
     // MARK: - ARSKViewDelegate
     
     func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
-        if anchor.name == K.TEXT_ANCHOR {
-            // Create and configure a node for the anchor added to the view's session.
-            let labelNode = SKLabelNode(text: "👆")
-            labelNode.fontSize = 80
-            labelNode.fontColor = .blue
-            labelNode.horizontalAlignmentMode = .center
-            labelNode.verticalAlignmentMode = .center
-            
-            for i in 5...8 {
-                let circleNode = SKShapeNode(circleOfRadius: CGFloat(20*i))
-                circleNode.strokeColor = .yellow
-                labelNode.addChild(circleNode)
-            }
-            return labelNode;
+        return getSpriteNode(anchor)
+    }
+    
+    func displayAnchors(_ anchors: [ARAnchor]) {
+        
+        print("$$$$$> anchors: \(anchors.count)")
+
+        for anchor in anchors {
+            print(">>>>>>>>> anchor: \(anchor.name): \(String(describing: anchor))")
+        }
+    }
+    
+    func getSpriteNode(_ anchor: ARAnchor) -> SKNode? {
+        
+        if let name = anchor.name,
+           name == K.TEXT_ANCHOR {
+            return ViewUtilities.getSprite(symbol: "👆")
         } else {
-            return nil
+            print("getSpriteNode: not TEXT \(anchor.name)")
+            return ViewUtilities.getSprite(symbol: "🟡")
         }
     }
     

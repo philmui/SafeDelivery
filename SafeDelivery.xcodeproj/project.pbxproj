@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		47ED8C781FBF153898F74C41 /* Pods_SafeDelivery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF8A349A83D03ACE9C46A1B /* Pods_SafeDelivery.framework */; };
-		DA19BC8F27459FF200F74807 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA19BC8E27459FF200F74807 /* GoogleService-Info.plist */; };
 		DA433447274306DA0000A4FB /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA433446274306DA0000A4FB /* LocationProvider.swift */; };
 		DA43344D27430C4E0000A4FB /* DistanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA43344C27430C4E0000A4FB /* DistanceViewController.swift */; };
+		DA44FFE72745E55B0027BB64 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA44FFE62745E55B0027BB64 /* GoogleService-Info.plist */; };
 		DA58622E2743585D00D3E984 /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA58622D2743585D00D3E984 /* FileManagerExtension.swift */; };
 		DA5862302743630500D3E984 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA58622F2743630500D3E984 /* Constants.swift */; };
+		DA9472B4274B86B6006A85ED /* ViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9472B3274B86B6006A85ED /* ViewUtilities.swift */; };
 		DADBCEC927424BAD00E5CD51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBCEC827424BAD00E5CD51 /* AppDelegate.swift */; };
 		DADBCECB27424BAD00E5CD51 /* Scene.sks in Resources */ = {isa = PBXBuildFile; fileRef = DADBCECA27424BAD00E5CD51 /* Scene.sks */; };
 		DADBCECD27424BAD00E5CD51 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADBCECC27424BAD00E5CD51 /* Scene.swift */; };
@@ -27,11 +28,12 @@
 		5860FF373D792FF49EEC4D5B /* Pods-SafeDelivery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeDelivery.release.xcconfig"; path = "Target Support Files/Pods-SafeDelivery/Pods-SafeDelivery.release.xcconfig"; sourceTree = "<group>"; };
 		AAF8A349A83D03ACE9C46A1B /* Pods_SafeDelivery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SafeDelivery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59C6ABE9146440B60D48227 /* Pods-SafeDelivery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SafeDelivery.debug.xcconfig"; path = "Target Support Files/Pods-SafeDelivery/Pods-SafeDelivery.debug.xcconfig"; sourceTree = "<group>"; };
-		DA19BC8E27459FF200F74807 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		DA433446274306DA0000A4FB /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		DA43344C27430C4E0000A4FB /* DistanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceViewController.swift; sourceTree = "<group>"; };
+		DA44FFE62745E55B0027BB64 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DA58622D2743585D00D3E984 /* FileManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtension.swift; sourceTree = "<group>"; };
 		DA58622F2743630500D3E984 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DA9472B3274B86B6006A85ED /* ViewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtilities.swift; sourceTree = "<group>"; };
 		DADBCEC527424BAD00E5CD51 /* SafeDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SafeDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DADBCEC827424BAD00E5CD51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DADBCECA27424BAD00E5CD51 /* Scene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Scene.sks; sourceTree = "<group>"; };
@@ -61,7 +63,6 @@
 				B59C6ABE9146440B60D48227 /* Pods-SafeDelivery.debug.xcconfig */,
 				5860FF373D792FF49EEC4D5B /* Pods-SafeDelivery.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -85,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				DADBCED027424BAD00E5CD51 /* Main.storyboard */,
+				DA9472B3274B86B6006A85ED /* ViewUtilities.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -128,7 +130,7 @@
 				DA19BC8C27459C9700F74807 /* Views */,
 				DA19BC8D27459CA900F74807 /* Controllers */,
 				DADBCED327424BAF00E5CD51 /* Assets.xcassets */,
-				DA19BC8E27459FF200F74807 /* GoogleService-Info.plist */,
+				DA44FFE62745E55B0027BB64 /* GoogleService-Info.plist */,
 				DADBCED527424BAF00E5CD51 /* LaunchScreen.storyboard */,
 			);
 			path = SafeDelivery;
@@ -184,7 +186,7 @@
 			);
 			mainGroup = DADBCEBC27424BAD00E5CD51;
 			packageReferences = (
-				DADBCEDD27424CC600E5CD51 /* XCRemoteSwiftPackageReference "LogStore.git" */,
+				DADBCEDD27424CC600E5CD51 /* XCRemoteSwiftPackageReference "LogStore" */,
 			);
 			productRefGroup = DADBCEC627424BAD00E5CD51 /* Products */;
 			projectDirPath = "";
@@ -202,7 +204,7 @@
 			files = (
 				DADBCECB27424BAD00E5CD51 /* Scene.sks in Resources */,
 				DADBCED727424BAF00E5CD51 /* LaunchScreen.storyboard in Resources */,
-				DA19BC8F27459FF200F74807 /* GoogleService-Info.plist in Resources */,
+				DA44FFE72745E55B0027BB64 /* GoogleService-Info.plist in Resources */,
 				DADBCED427424BAF00E5CD51 /* Assets.xcassets in Resources */,
 				DADBCED227424BAD00E5CD51 /* Main.storyboard in Resources */,
 			);
@@ -264,6 +266,7 @@
 				DA5862302743630500D3E984 /* Constants.swift in Sources */,
 				DA43344D27430C4E0000A4FB /* DistanceViewController.swift in Sources */,
 				DADBCEC927424BAD00E5CD51 /* AppDelegate.swift in Sources */,
+				DA9472B4274B86B6006A85ED /* ViewUtilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,7 +500,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		DADBCEDD27424CC600E5CD51 /* XCRemoteSwiftPackageReference "LogStore.git" */ = {
+		DADBCEDD27424CC600E5CD51 /* XCRemoteSwiftPackageReference "LogStore" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/philmui/LogStore.git";
 			requirement = {
@@ -510,7 +513,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		DADBCEDE27424CC600E5CD51 /* LogStore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = DADBCEDD27424CC600E5CD51 /* XCRemoteSwiftPackageReference "LogStore.git" */;
+			package = DADBCEDD27424CC600E5CD51 /* XCRemoteSwiftPackageReference "LogStore" */;
 			productName = LogStore;
 		};
 /* End XCSwiftPackageProductDependency section */
