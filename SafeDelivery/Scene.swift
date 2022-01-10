@@ -29,13 +29,13 @@ class Scene: SKScene {
         let point = touch.location(in: sceneView)
         
         guard let hitTestResult = sceneView.hitTest(point, types: .existingPlane).first else {
-            print("no existing plane at: \(String(describing: point))")
+            print("no plane at: \(String(describing: point))")
             return
         }
         let anchor = ARAnchor(name: K.TEXT_ANCHOR, transform: hitTestResult.worldTransform)
         sceneView.session.add(anchor: anchor)
         
-        print("touch: adding \(String(describing: point))")
+        print("touch: adding \(String(describing: point)): \(anchor.name)")
     }
 }
 

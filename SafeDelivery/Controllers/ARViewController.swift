@@ -46,20 +46,12 @@ class ARViewController: UIViewController, ARSKViewDelegate, ARSessionDelegate {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
 
-        restoreStoredWorldMap(configuration)
-        
-//        if shouldRestore {
-//
-//            do {
-//                let data = try Data(contentsOf: FileManager.mapDataURL())
-//                let worldMap = try NSKeyedUnarchiver.unarchivedObject(
-//                                        ofClass: ARWorldMap.self, from: data)
-//                configuration.initialWorldMap = worldMap
-//            } catch {
-//                printLog("load worldmap error: \(error)")
-//            }
-//        }
-        
+        // restoreWorldMapFromFirestore(configuration)
+        restoreWorldMapFromFile(configuration)
+        if let map = configuration.initialWorldMap {
+            self.sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+            self.displayAnchors(map.anchors)
+        }
         
         // Run the view's session
         sceneView.session.run(configuration)
@@ -83,19 +75,23 @@ class ARViewController: UIViewController, ARSKViewDelegate, ARSessionDelegate {
             }
             
             if let loc = self!.lastLocation {
-                self!.writeWorldMap(map: worldMap, at: loc)
+                self!.writeWorldMapToFirestore(map: worldMap, at: loc)
+                self!.writeWorldMapToFile(map: worldMap)
             }
-            //do {
-            //    let data = try NSKeyedArchiver.archivedData(withRootObject: worldMap, requiringSecureCoding: false)
-            //    try data.write(to: FileManager.mapDataURL())
-            //} catch {
-            //    printLog("click done error: \(error)")
-            //}
             self?.dismiss(animated: true, completion: nil)
         }
     }
     
-    func writeWorldMap(map: ARWorldMap, at location: CLLocation) {
+    func writeWorldMapToFile(map: ARWorldMap) {
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: map, requiringSecureCoding: false)
+            try data.write(to: FileManager.mapDataURL())
+        } catch {
+            printLog("error at writeWorldMapToFile: \(error)")
+        }
+    }
+    
+    func writeWorldMapToFirestore(map: ARWorldMap, at location: CLLocation) {
         
         do {
             let nsmap = try NSKeyedArchiver.archivedData(withRootObject: map,
@@ -118,7 +114,17 @@ class ARViewController: UIViewController, ARSKViewDelegate, ARSessionDelegate {
         }
     }
     
-    func restoreStoredWorldMap(_ configuration: ARWorldTrackingConfiguration) {
+    func restoreWorldMapFromFile(_ configuration: ARWorldTrackingConfiguration) {
+        do {
+            let data = try Data(contentsOf: FileManager.mapDataURL())
+            let map = try NSKeyedUnarchiver.unarchivedObject(ofClass: ARWorldMap.self, from: data)
+            configuration.initialWorldMap = map
+        } catch {
+            printLog("restoreWorldMapFromFile: \(error)")
+        }
+    }
+    
+    func restoreWorldMapFromFirestore(_ configuration: ARWorldTrackingConfiguration) {
         
         db.collection(K.FStore.worldMap)
             .order(by: K.FStore.timestamp, descending: true).limit(to: 1)
@@ -146,8 +152,6 @@ class ARViewController: UIViewController, ARSKViewDelegate, ARSessionDelegate {
                                 print("****> anchors: \(storedWorldMap.anchors.count)")
                                 
                                 configuration.initialWorldMap = storedWorldMap
-                                print("$$$> anchors: \(storedWorldMap.anchors.count)")
-                                self.displayAnchors(storedWorldMap.anchors)
                             }
                         } catch {
                             printLog("Firebase load worldmap error: \(error)")
@@ -163,13 +167,13 @@ class ARViewController: UIViewController, ARSKViewDelegate, ARSessionDelegate {
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         
-        doneButton.isEnabled = true // frame.worldMappingStatus == .mapped
+        doneButton.isEnabled = true
         
         switch frame.worldMappingStatus {
-        case .limited: statusLabel.text = "Limited"
+        case .limited: statusLabel.text = "Limited: calibrating ..."
         case .extending: statusLabel.text = "Extending"
         case .mapped: statusLabel.text = "Mapped"
-        default: statusLabel.text = "Not Available"
+        default: statusLabel.text = "NOT ready ..."
         }
     }
     
@@ -178,13 +182,13 @@ class ARViewController: UIViewController, ARSKViewDelegate, ARSessionDelegate {
     func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
         return getSpriteNode(anchor)
     }
-    
+        
     func displayAnchors(_ anchors: [ARAnchor]) {
         
-        print("$$$$$> anchors: \(anchors.count)")
+        print("displayAnchors: \(anchors.count)")
 
         for anchor in anchors {
-            print(">>>>>>>>> anchor: \(anchor.name): \(String(describing: anchor))")
+            print("\tanchor: \(anchor.name ?? "none"): \(String(describing: anchor))")
         }
     }
     
@@ -194,8 +198,8 @@ class ARViewController: UIViewController, ARSKViewDelegate, ARSessionDelegate {
            name == K.TEXT_ANCHOR {
             return ViewUtilities.getSprite(symbol: "👆")
         } else {
-            print("getSpriteNode: not TEXT \(anchor.name)")
-            return ViewUtilities.getSprite(symbol: "🟡")
+            print("getSpriteNode: not TEXT \(anchor.name ?? "none")")
+            return nil
         }
     }
     
@@ -212,5 +216,22 @@ class ARViewController: UIViewController, ARSKViewDelegate, ARSessionDelegate {
     func sessionInterruptionEnded(_ session: ARSession) {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
+    }
+}
+
+// MARK: ARSCNViewDelegate
+
+extension ARViewController: ARSCNViewDelegate {
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        guard anchor.name == K.TEXT_ANCHOR else {
+            print("renderer: not a \(K.TEXT_ANCHOR)")
+            return
+        }
+        
+        let cube = SCNBox(width: 3, height: 3, length: 3, chamferRadius: 0)
+        let cubeMaterial = SCNMaterial()
+        cubeMaterial.diffuse.contents = UIColor.blue
+        cube.materials = [cubeMaterial]
+        node.addChildNode(SCNNode(geometry: cube))
     }
 }
